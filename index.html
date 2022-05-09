@@ -5,6 +5,36 @@
     <script src="https://unpkg.com/lodash@4.17.20"></script>
   </head>
   <body>
+    <div class="container">
+      <div class="main-tab">
+        <h3 class="app-title">Weather Application</h3>
+        <div class="input-tab">
+          <div class="form__group field">
+            <input
+              type="text"
+              class="form__field"
+              placeholder="Name"
+              name="name"
+              id="name"
+              required
+              autocomplete="off"
+            />
+            <label for="name" class="form__label">Country</label>
+          </div>
+          <button class="search">SEARCH</button>
+        </div>
+      </div>
+      <div class="animation-modal">
+        <div class="text">
+          <h1>Loading...</h1>
+        </div>
+        <div class="loading animator">
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>
