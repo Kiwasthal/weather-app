@@ -46,7 +46,7 @@ let createWeatherForcast = coordinates => {
   let lat = coordinates.coord.lat;
   let lon = coordinates.coord.lon;
   console.log(lat, lon);
-  return `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=standard&APPID=27863a0db6a7d4accadb9153ff953bbb`;
+  return `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=Metric&APPID=27863a0db6a7d4accadb9153ff953bbb`;
 };
 
 let normalizeInput = input => {

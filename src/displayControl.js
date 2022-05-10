@@ -3,26 +3,25 @@ import cloudyIcon from './assets/cloudy.svg';
 import rainyIcon from './assets/rainy.svg';
 import snowIcon from './assets/snowy.svg';
 import clearIcon from './assets/day.svg';
+import temperatureIcon from './assets/temperature.png';
+import humidityIcon from './assets/humidity.png';
+import windIcon from './assets/wind.png';
+import { te } from 'date-fns/locale';
 
-let createDOMdisplay = data => {
-  nextSevenDaysDisplay(data);
+let emptyContainer = parent => {
+  while (parent.lastElementChild) {
+    parent.removeChild(parent.lastElementChild);
+  }
 };
 
 let loadingAnimationStart = () => {
   let animationModal = document.querySelector('.animation-modal');
-  let animator = document.querySelector('.animator');
   animationModal.style.display = 'flex';
 };
 
 let loadingAnimationEnd = () => {
   let animationModal = document.querySelector('.animation-modal');
   animationModal.style.display = 'none';
-};
-
-let nextSevenDaysDisplay = data => {
-  for (let i = 1; i <= 7; i++) {
-    createDayCard(i, data);
-  }
 };
 
 let getDay = i => {
@@ -55,6 +54,76 @@ let createWeatherImages = (parent, weatherCheck) => {
   }
 };
 
+let createCardTemperatures = (parent, data, index) => {
+  const temperatureDiv = document.createElement('div');
+  temperatureDiv.classList.add('card-temperatures');
+  temperatureDiv.textContent = `${data.daily[index].temp.day}°C`;
+  parent.appendChild(temperatureDiv);
+};
+
+let createCurrentDate = () => {
+  const currentDate = document.createElement('div');
+  currentDate.classList.add('current-title');
+  currentDate.textContent = format(new Date(), 'MMM/dd/yyyy');
+  return currentDate;
+};
+
+let createCurrentCity = data => {
+  const currentCity = document.createElement('div');
+  currentCity.classList.add('current-city');
+  currentCity.textContent = data.timezone;
+  return currentCity;
+};
+
+let createCurrentMain = data => {
+  const currentMain = document.createElement('div');
+  currentMain.classList.add('current-main-weather');
+  currentMain.textContent = data.current.weather[0].main;
+  return currentMain;
+};
+
+let currentTemperatureTitle = () => {
+  let tempTitle = document.createElement('h3');
+  tempTitle.classList.add('temp-title');
+  tempTitle.textContent = 'Temperature:';
+  return tempTitle;
+};
+
+let currentTemperatureContent = data => {
+  let tempContent = document.createElement('p');
+  tempContent.classList.add('temp-content');
+  tempContent.textContent = `${data.current.temp}°C`;
+  return tempContent;
+};
+
+let currentTemperatureImage = () => {
+  const temperaturePNG = new Image();
+  temperaturePNG.src = temperatureIcon;
+  return temperaturePNG;
+};
+
+let createCurrentTemperatureWrapper = data => {
+  const currentTemperature = document.createElement('div');
+  currentTemperature.classList.add('current-temperature');
+  currentTemperature.appendChild(currentTemperatureTitle());
+  currentTemperature.appendChild(currentTemperatureContent(data));
+  currentTemperature.appendChild(currentTemperatureImage());
+  return currentTemperature;
+};
+
+let createCurrentDayCard = data => {
+  const dayWrapper = document.querySelector('.current-day-wrapper');
+  const currentDayContainer = document.createElement('div');
+  currentDayContainer.classList.add('current-day');
+  currentDayContainer.appendChild(createCurrentDate());
+  currentDayContainer.appendChild(createCurrentCity(data));
+  currentDayContainer.appendChild(createCurrentMain(data));
+  createWeatherImages(currentDayContainer, data.current.weather[0].main);
+  console.log(data);
+  currentDayContainer.appendChild(createCurrentTemperatureWrapper(data));
+  dayWrapper.appendChild(currentDayContainer);
+};
+
 let createDayCard = (i, data) => {
   const weatherCheck = data.daily[i].weather[0].main;
   let weeklyContainer = document.querySelector('.weekly-display');
@@ -66,10 +135,23 @@ let createDayCard = (i, data) => {
   weatherInfo.classList.add('weather-info');
   dayHeader.textContent = getDay(i);
   createWeatherImages(dayCard, weatherCheck);
+  createCardTemperatures(dayCard, data, i);
   dayCard.appendChild(dayHeader);
   dayCard.appendChild(weatherInfo);
   weeklyContainer.appendChild(dayCard);
-  console.log(data);
+};
+
+let nextSevenDaysDisplay = data => {
+  emptyContainer(document.querySelector('.weekly-display'));
+  for (let i = 1; i <= 7; i++) {
+    createDayCard(i, data);
+  }
+};
+
+let createDOMdisplay = data => {
+  emptyContainer(document.querySelector('.current-day-wrapper'));
+  createCurrentDayCard(data);
+  nextSevenDaysDisplay(data);
 };
 
 export { loadingAnimationStart, loadingAnimationEnd, createDOMdisplay };
