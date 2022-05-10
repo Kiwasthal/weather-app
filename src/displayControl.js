@@ -6,12 +6,18 @@ import clearIcon from './assets/day.svg';
 import temperatureIcon from './assets/temperature.png';
 import humidityIcon from './assets/humidity.png';
 import windIcon from './assets/wind.png';
-import { te } from 'date-fns/locale';
+import githubIcon from './assets/mark.png';
 
 let emptyContainer = parent => {
   while (parent.lastElementChild) {
     parent.removeChild(parent.lastElementChild);
   }
+};
+
+let createMark = () => {
+  let githubMark = new Image();
+  githubMark.src = githubIcon;
+  document.querySelector('a').appendChild(githubMark);
 };
 
 let loadingAnimationStart = () => {
@@ -214,4 +220,9 @@ let createDOMdisplay = data => {
   nextSevenDaysDisplay(data);
 };
 
-export { loadingAnimationStart, loadingAnimationEnd, createDOMdisplay };
+export {
+  loadingAnimationStart,
+  loadingAnimationEnd,
+  createDOMdisplay,
+  createMark,
+};
