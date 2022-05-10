@@ -6,19 +6,21 @@ import {
 } from './displayControl';
 
 async function getWeatherData() {
+  if (userInput.value == '') return;
   loadingAnimationStart();
   const inputCity = normalizeInput(userInput.value);
   try {
+    document.querySelector('.error').textContent = '';
     const requestCoordinates = createRequestCoordinates(inputCity);
     const coordinates = await fetchCoordinates(requestCoordinates);
     const forecast = createWeatherForcast(coordinates);
     const weatherData = await getForecast(forecast);
     createDOMdisplay(weatherData);
     loadingAnimationEnd();
-  } catch {
-    err => {
-      console.log(err);
-    };
+  } catch (err) {
+    loadingAnimationEnd();
+    if (err instanceof TypeError)
+      document.querySelector('.error').textContent = 'City not found';
   }
 }
 let getForecast = async url => {
