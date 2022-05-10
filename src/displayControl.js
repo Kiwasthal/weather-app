@@ -111,6 +111,64 @@ let createCurrentTemperatureWrapper = data => {
   return currentTemperature;
 };
 
+let currentHumidityTitle = () => {
+  let humidityTitle = document.createElement('h3');
+  humidityTitle.classList.add('humidity-title');
+  humidityTitle.textContent = 'Humidity:';
+  return humidityTitle;
+};
+
+let currentHumidityContent = data => {
+  let humidityContent = document.createElement('p');
+  humidityContent.classList.add('humidity-content');
+  humidityContent.textContent = data.current.humidity;
+  return humidityContent;
+};
+
+let currentHumidityIcon = () => {
+  const humidityPNG = new Image();
+  humidityPNG.src = humidityIcon;
+  return humidityPNG;
+};
+
+let createCurrentHumidityWrapper = data => {
+  const currentHumidity = document.createElement('div');
+  currentHumidity.classList.add('current-humidity');
+  currentHumidity.appendChild(currentHumidityTitle());
+  currentHumidity.appendChild(currentHumidityContent(data));
+  currentHumidity.appendChild(currentHumidityIcon());
+  return currentHumidity;
+};
+
+let currentWindTitle = () => {
+  const windTitle = document.createElement('h3');
+  windTitle.classList.add('wind-title');
+  windTitle.textContent = 'Wind:';
+  return windTitle;
+};
+
+let currentWindContent = data => {
+  const currentWindContent = document.createElement('p');
+  currentWindContent.classList.add('wind-content');
+  currentWindContent.textContent = data.current.wind_speed;
+  return currentWindContent;
+};
+
+let currentWindIcon = () => {
+  const windPNG = new Image();
+  windPNG.src = windIcon;
+  return windPNG;
+};
+
+let createCurrentWindWrapper = data => {
+  const currentWind = document.createElement('div');
+  currentWind.classList.add('current-wind');
+  currentWind.appendChild(currentWindTitle());
+  currentWind.appendChild(currentWindContent(data));
+  currentWind.appendChild(currentWindIcon());
+  return currentWind;
+};
+
 let createCurrentDayCard = data => {
   const dayWrapper = document.querySelector('.current-day-wrapper');
   const currentDayContainer = document.createElement('div');
@@ -121,6 +179,8 @@ let createCurrentDayCard = data => {
   createWeatherImages(currentDayContainer, data.current.weather[0].main);
   console.log(data);
   currentDayContainer.appendChild(createCurrentTemperatureWrapper(data));
+  currentDayContainer.appendChild(createCurrentHumidityWrapper(data));
+  currentDayContainer.appendChild(createCurrentWindWrapper(data));
   dayWrapper.appendChild(currentDayContainer);
 };
 
