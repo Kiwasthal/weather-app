@@ -302,6 +302,7 @@ body {
 }
 
 .current-day .card-image {
+  align-self: flex-end;
   grid-area: 1 / 3 / 3 / 4;
   height: 20vh;
 }
@@ -336,4 +337,39 @@ body {
   justify-self: center;
   height: 10vh;
   grid-area: 1 / 2 / 3 / 3;
+}
+
+.current-wind {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.current-humidity {
+  grid-area: 3 / 3 / 4 / 4;
+}
+
+.current-humidity,
+.current-wind {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  font-weight: bolder;
+  font-style: italic;
+  color: #d1f5ff;
+}
+
+.wind-title,
+.humidity-title {
+  justify-self: flex-end;
+}
+
+.humidity-content,
+.wind-content {
+  font-size: 24px;
+}
+
+.current-humidity img,
+.current-wind img {
+  grid-area: 2 / 1 / 3 / 3;
+  justify-self: center;
 }

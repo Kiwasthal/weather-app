@@ -121,7 +121,7 @@ let currentHumidityTitle = () => {
 let currentHumidityContent = data => {
   let humidityContent = document.createElement('p');
   humidityContent.classList.add('humidity-content');
-  humidityContent.textContent = data.current.humidity;
+  humidityContent.textContent = `${data.current.humidity}%`;
   return humidityContent;
 };
 
@@ -150,7 +150,7 @@ let currentWindTitle = () => {
 let currentWindContent = data => {
   const currentWindContent = document.createElement('p');
   currentWindContent.classList.add('wind-content');
-  currentWindContent.textContent = data.current.wind_speed;
+  currentWindContent.textContent = `${data.current.wind_speed} m/s`;
   return currentWindContent;
 };
 
