@@ -4,7 +4,7 @@
 
 This project is made as part of the Odin-Project's series : Asynchronous JavaScript and APIs. The intent is creating an application where the user can seach for city and get a daily and weekly weather-forecast regarding that city.
 
-![weatherApp](https://user-images.githubusercontent.com/99625875/167706356-0304ff15-c038-4d2d-bb0e-79e72f717675.gif)
+![weatherapp](https://user-images.githubusercontent.com/99625875/167706742-5d5d17c5-8011-4dd1-8af8-4db4ae6e0b69.gif)
 
 
 # About
