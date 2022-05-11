@@ -9,7 +9,7 @@ This project is made as part of the Odin-Project's series : Asynchronous JavaScr
 
 # About
 
-This project makes use of the <a href="https://openweathermap.org/">OpenWeather API</a>.Using the build-in OpenWeather Geocoder we are able to find the exact latitude and longitude for the city searched and such we are able to perform another fetch request getting a meteorological prediction for the incoming week. <a href="https://date-fns.org/">Date-fns</a> library was also used in the displaying of various dates. Outside from webpack bundler and babel parses the project also makes use of ESLint while following the styling guides of airbnb.
+This project makes use of the <a href="https://openweathermap.org/">OpenWeather API</a>.Using the build-in OpenWeather Geocoder we are able to find the exact latitude and longitude for the city searched and such we are able to perform another fetch request getting a meteorological prediction for the incoming week. <a href="https://date-fns.org/">Date-fns</a> library was also used in the displaying of various dates. Outside from webpack bundler and babel parsing the project also makes use of ESLint while following the styling guides of airbnb.
 
 The project's demonstration can be found <a href="https://kiwasthal.github.io/weather-app/">here.</a>
 
